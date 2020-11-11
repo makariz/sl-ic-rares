@@ -266,6 +266,27 @@ function calculateTimeLeft()
     });
 }
 
+function detectRegion()
+{
+    var tz = -(new Date()).getTimezoneOffset() / 60;
+
+    var naTz = [13, 14, -11, -10, -9, -8, -7, -6, -5, -4];
+    var euTz = [-1, 0, 1, 2, 3, 4, 5];
+
+    if (naTz.indexOf(tz) >= 0)
+    {
+        return "na";
+    }
+    else if (euTz.indexOf(tz) >= 0)
+    {
+        return "eu";
+    }
+    else
+    {
+        return null;
+    }
+}
+
 function setup()
 {
     var lastKilledRareId = parseInt($("#select-last-rare").val());
@@ -294,8 +315,6 @@ function setup()
     var dt = lastKilledAt.clone();
     var now = moment();
     var nextRares = getNextRares(rares[rareIndex].id, showNum);
-
-    console.log(lastKilledRareId, nextRares);
 
     $("#table-rares tr.item").remove();
 
@@ -419,4 +438,11 @@ $(document).ready(function()
     setup();
 
     setInterval(calculateTimeLeft, 1000);
+
+    var region = detectRegion();
+    if (region)
+    {
+        $("#btn-sync-" + region).trigger("click");
+        console.log("autosync:", region);
+    }
 });
