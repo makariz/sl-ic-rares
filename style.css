@@ -1,0 +1,65 @@
+body
+{
+    background-color: #fff;
+    padding: 15px;
+}
+
+.template, .hide
+{
+    display: none;
+}
+
+#title
+{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.table, .table th, .table td
+{
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+.table th, .table td
+{
+    padding: 15px;
+    text-align: center;
+}
+
+.table tr.item:nth-child(odd)
+{
+    background-color: #ececec;
+}
+
+.table tr.header
+{
+    background-color: #c9c9c9;
+}
+
+.table .item.top-border
+{
+    border-top: 5px solid #000;
+}
+
+label
+{
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+input, select
+{
+    margin-right: 20px;
+    min-width: 150px;
+}
+
+.link-copy-coords
+{
+    float: right;
+}
+
+.link-copy-coords:active
+{
+    transform: translate(2px, 2px);
+}

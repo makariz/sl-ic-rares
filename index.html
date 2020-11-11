@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WoW Shadowlands Icecrown Rares</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <link rel="stylesheet" href="style.css?v=1">
+    <script src="script.js?v=1"></script>
+
+    <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
+    <script src="https://wow.zamimg.com/widgets/power.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <h3 id="title">WoW Shadowlands Prepatch Icecrown Rares</h3>
+
+    <form class="form-inline">
+        <label for="select-last-rare">Last killed rare</label>
+        <select id="select-last-rare"></select>
+
+        <label for="input-last-at">Last killed at</label>
+        <input id="input-last-at" type="time">
+
+        <label for="input-show-num">Show amount</label>
+        <input id="input-show-num" type="number" value="20">
+    </form>
+
+    <hr>
+
+    <table id="table-rares" class="table">
+        <tr class="header">
+            <th>Spawn at</th>
+            <th>Time left</th>
+            <th>Rare name</th>
+            <th>Coords</th>
+            <th>Drop</th>
+        </tr>
+    </table>
+</div>
+
+<template id="template-item" class="template">
+    <tr class="item" data-id="">
+        <td class="spawn-at"></td>
+        <td class="time-left" data-ts=""></td>
+        <td class="rare-name" data-name=""></td>
+        <td class="coords"><span></span> <a href="#" class="link-copy-coords" title="Copy /way to clipboard"><i class="fa fa-copy"></i></a></td>
+        <td class="drop" data-name=""></td>
+    </tr>
+</template>
+
+</body>
+</html>
