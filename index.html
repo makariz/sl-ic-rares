@@ -9,8 +9,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-    <link rel="stylesheet" href="style.css?v=2">
-    <script src="script.js?v=2"></script>
+    <link rel="stylesheet" href="style.css?v=3">
+    <script src="script.js?v=3"></script>
 
     <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
     <script src="https://wow.zamimg.com/widgets/power.js"></script>
@@ -19,7 +19,7 @@
 
 <div class="container">
 
-    <h3 id="title">WoW Shadowlands Prepatch Icecrown Rares</h3>
+    <h3 id="title">WoW Shadowlands Prepatch Icecrown Rares <a href="#" id="link-help" title="Show help"><i class="fa fa-question-circle"></i></a></h3>
 
     <form class="form-inline">
         <label for="select-last-rare">Last killed rare</label>
@@ -35,6 +35,10 @@
             <input id="check-beep" type="checkbox" class="form-check-input">
             <label for="check-beep" class="form-check-label">Audio beep</label>  
         </div>
+
+        <button type="button" id="btn-sync-eu" class="form-elem button">Sync to EU</button>
+        <button type="button" id="btn-sync-na" class="form-elem button">Sync to NA</button>
+
     </form>
 
     <hr>
@@ -49,6 +53,18 @@
         </tr>
     </table>
 </div>
+
+<hr>
+
+<h5 id="help-section">How to use?</h5>
+
+<ul>
+    <li>Click "Sync to EU" or "Sync to NA" to automatically populate the fields and sync the time to the latest rare in the region.</li>
+    <li>Alternatively you can change the fields manually (like add 3-4 minutes to "Last killed at" so the timer tracks when the rare actually becomes active/killable).</li>
+    <li>Set the "Show amount" field to manually decrease/increase the list size. Default 20 is a full one rare rotation.</li>
+    <li>Check the "Audio beep" -checkbox to enable an audio notification when a rare is spawning.</li>
+    <li>Click the copy icon next to the coords to copy "/way [coords] [rarename]" to the clipboard.</li>
+</ul>
 
 <template id="template-item" class="template">
     <tr class="item" data-id="">

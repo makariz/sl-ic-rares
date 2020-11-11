@@ -19,6 +19,12 @@ var rares =
         id: 174062,
         name: "Skadi the Ruthless",
         coords: "57,8, 56,1",
+        drop:
+        {
+            id: 44151,
+            name: "Reins of the Blue Proto-Drake",
+        },
+        bgColor: "#abfffc",
     },
     {
         id: 174061,
@@ -44,6 +50,7 @@ var rares =
             id: 183634,
             name: "Papa's Mint Condition Bag",
         },
+        bgColor: "#f6d6ff",
     },
     {
         id: 1740657,
@@ -106,6 +113,9 @@ var rares =
         coords: "36,5, 67,4",
     },
 ];
+
+var syncEu = { id: 174065, dt: "2020-11-11T19:40:00Z" };
+var syncNa = { id: 174065, dt: "2020-11-11T14:20:00Z" };
 
 if (!String.prototype.padStart) {
     String.prototype.padStart = function padStart(targetLength, padString) {
@@ -217,7 +227,7 @@ function calculateTimeLeft()
 {
     var isFuture = false;
 
-    $("#table-rares .item").removeClass("top-border");
+    $("#table-rares .item").removeClass("highlight");
 
     $("#table-rares .item").each(function()
     {
@@ -231,7 +241,7 @@ function calculateTimeLeft()
             if (!isFuture)
             {
                 isFuture = true;
-                $(this).addClass("top-border");
+                $(this).addClass("highlight");
             }
 
             $timeLeft.text(str);
@@ -310,6 +320,11 @@ function setup()
             $item.find(".drop").attr("data-name", nextRare.drop.name)
                 .html("<a href=\"" + getWowheadUrl("item", nextRare.drop.id) + "\" target=\"_blank\">" + nextRare.drop.name + "</a>");
         }
+
+        if (nextRare.bgColor)
+        {
+            $item.css("background-color", nextRare.bgColor);
+        }
         
         $("#table-rares").append($item);
     }
@@ -336,6 +351,51 @@ $(document).on("click", ".link-copy-coords", function(e)
 
     var str = "/way " + coords + " " + name;
     navigator.clipboard.writeText(str);
+});
+
+$(document).on("click", "#btn-sync-eu, #btn-sync-na", function(e)
+{
+    var btnId = $(this).attr("id");
+    var data;
+
+    if (btnId === "btn-sync-eu")
+    {
+        data = syncEu;
+    }
+    else if (btnId === "btn-sync-na")
+    {
+        data = syncNa;
+    }
+    else
+    {
+        throw new Error("Invalid button id: " + btnId);
+    }
+    var dt = moment(data.dt).add(20, "minutes");
+    var now = moment();
+
+    var index = getRareIndex(data.id);
+    var rare = rares[index];
+
+    while (dt.unix() < now.unix())
+    {
+        dt.add(20, "minutes");
+        index = getNextRareIndex(rare.id);
+        rare = rares[index];
+    }
+
+    dt.subtract(20, "minutes");
+
+    $("#select-last-rare").val(rare.id);
+    $("#input-last-at").val(dt.format("HH:mm"));
+
+    setup();
+});
+
+$(document).on("click", "#link-help", function(e)
+{
+    e.preventDefault();
+
+    $("#help-section")[0].scrollIntoView();
 });
 
 $(document).ready(function()

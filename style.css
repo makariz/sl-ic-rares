@@ -37,9 +37,10 @@ body
     background-color: #c9c9c9;
 }
 
-.table .item.top-border
+.table .item.highlight
 {
     border-top: 5px solid #000;
+    font-weight: bold;
 }
 
 label
@@ -51,7 +52,12 @@ label
 .form-elem
 {
     margin-right: 20px;
-    min-width: 150px;
+    /* min-width: 150px; */
+}
+
+#input-show-num
+{
+    width: 60px;
 }
 
 .link-copy-coords
@@ -62,4 +68,9 @@ label
 .link-copy-coords:active
 {
     transform: translate(2px, 2px);
+}
+
+.button
+{
+    cursor: pointer;
 }
