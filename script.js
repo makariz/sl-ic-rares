@@ -4,21 +4,25 @@ var rares =
         id: 174065,
         name: "Blood Queen Lana'thel",
         coords: "49,7, 32,7",
+        items: [183646, 183648, 183647],
     },
     {
         id: 174064,
         name: "Professor Putricide",
         coords: "57,1, 30,3",
+        items: [183649, 183651, 183650],
     },
     {
         id: 174063,
         name: "Lady Deathwhisper",
         coords: "51,1, 78,5",
+        items: [183641, 183653, 183655],
     },
     {
         id: 174062,
         name: "Skadi the Ruthless",
         coords: "57,8, 56,1",
+        items: [183670, 183656, 183657],
         drop:
         {
             id: 44151,
@@ -30,21 +34,25 @@ var rares =
         id: 174061,
         name: "Ingvar the Plunderer",
         coords: "52,4, 52,6",
+        items: [183668, 183659, 183658],
     },
     {
         id: 174060,
         name: "Prince Keleseth",
         coords: "54,0, 44,7",
+        items: [50074, 183678, 183679, 183677, 183661, 183625],
     },
     {
         id: 174059,
         name: "The Black Knight",
         coords: "64,8, 22,1",
+        items: [183638, 183637, 183636],
     },
     {
         id: 174058,
         name: "Bronjahm",
         coords: "70,7, 38,4",
+        items: [183675, 183639, 183635],
         drop:
         {
             id: 183634,
@@ -56,61 +64,73 @@ var rares =
         id: 174057,
         name: "Scourgelord Tyrannus",
         coords: "47,2, 66,1",
+        items: [183674, 183633, 183632],
     },
     {
         id: 174056,
         name: "Forgemaster Garfrost",
         coords: "58,6, 72,5",
+        items: [183666, 183631, 183630],
     },
     {
         id: 174055,
         name: "Marwyn",
         coords: "58,2, 83,4",
+        items: [183687, 183663, 183662],
     },
     {
         id: 174054,
         name: "Falric",
         coords: "50,2, 87,9",
+        items: [183664, 183665, 183666],
     },
     {
         id: 174053,
         name: "The Prophet Tharon'ja",
         coords: "80,1, 61,2",
+        items: [183686, 183685, 183684],
     },
     {
         id: 174052,
         name: "Novos the Summoner",
         coords: "77,8, 66,1",
+        items: [183671, 183672, 183627],
     },
     {
         id: 174051,
         name: "Trollgore",
         coords: "58,3, 39,4",
+        items: [183669, 183626],
     },
     {
         id: 174050,
         name: "Krik'thir the Gatewatcher",
         coords: "67,5, 58,0",
+        items: [183681],
     },
     {
         id: 174049,
         name: "Prince Taldaram",
         coords: "29,6, 62,2",
+        items: [50074, 183678, 183679, 183677, 183661, 183625],
     },
     {
         id: 174048,
         name: "Elder Nadox",
         coords: "44,2, 49,1",
+        items: [183673],
     },
     {
         id: 174067,
         name: "Noth the Plaguebringer",
         coords: "31,6, 70,5",
+        items: [183642, 183676],
     },
     {
         id: 174066,
         name: "Patchwerk",
         coords: "36,5, 67,4",
+        items: [183645, 183644, 183643],
     },
 ];
 
@@ -334,10 +354,30 @@ function setup()
             .html("<a href=\"" + getWowheadUrl("npc", nextRare.id) + "\" target=\"_blank\">" + nextRare.name + "</a>");
         $item.find(".coords span").text(nextRare.coords);
 
+        var dropHtml = "";
+
         if (nextRare.drop)
         {
-            $item.find(".drop").attr("data-name", nextRare.drop.name)
-                .html("<a href=\"" + getWowheadUrl("item", nextRare.drop.id) + "\" target=\"_blank\">" + nextRare.drop.name + "</a>");
+            dropHtml += dropHtml = "<a href=\"" + getWowheadUrl("item", nextRare.drop.id) + "\" target=\"_blank\">" + nextRare.drop.name + "</a>";
+        }
+
+        if (nextRare.items)
+        {
+            if (nextRare.drop)
+            {
+                dropHtml += "<br>";
+            }
+
+            for (var j = 0; j < nextRare.items.length; j++)
+            {
+                var itemId = nextRare.items[j];
+                dropHtml += "<a href=\"" + getWowheadUrl("item", itemId) + "\" target=\"_blank\">i" + itemId + "</a> ";
+            }
+        }
+
+        if (dropHtml != "")
+        {
+            $item.find(".drop").html(dropHtml);
         }
 
         if (nextRare.bgColor)
@@ -346,6 +386,15 @@ function setup()
         }
         
         $("#table-rares").append($item);
+    }
+
+    try
+    {
+        $WowheadPower.init();
+    }
+    catch (err)
+    {
+        console.log("err:", err);
     }
 }
 
@@ -435,7 +484,7 @@ $(document).ready(function()
     $("#input-last-at").val(now.format("HH:mm"));
     $("#check-beep").prop("checked", false);
 
-    setup();
+    
 
     setInterval(calculateTimeLeft, 1000);
 
@@ -444,5 +493,9 @@ $(document).ready(function()
     {
         $("#btn-sync-" + region).trigger("click");
         console.log("autosync:", region);
+    }
+    else
+    {
+        setup();
     }
 });

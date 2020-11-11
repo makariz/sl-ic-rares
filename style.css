@@ -25,6 +25,7 @@ body
 {
     padding: 15px;
     text-align: center;
+    vertical-align: middle;
 }
 
 .table tr.item:nth-child(odd)
