@@ -9,8 +9,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-    <link rel="stylesheet" href="style.css?v=1">
-    <script src="script.js?v=1"></script>
+    <link rel="stylesheet" href="style.css?v=2">
+    <script src="script.js?v=2"></script>
 
     <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
     <script src="https://wow.zamimg.com/widgets/power.js"></script>
@@ -23,13 +23,18 @@
 
     <form class="form-inline">
         <label for="select-last-rare">Last killed rare</label>
-        <select id="select-last-rare"></select>
+        <select id="select-last-rare" class="form-elem"></select>
 
         <label for="input-last-at">Last killed at</label>
-        <input id="input-last-at" type="time">
+        <input id="input-last-at" type="time" class="form-elem">
 
         <label for="input-show-num">Show amount</label>
-        <input id="input-show-num" type="number" value="20">
+        <input id="input-show-num" type="number" value="20" class="form-elem">
+
+        <div class="form-check form-check-inline">
+            <input id="check-beep" type="checkbox" class="form-check-input">
+            <label for="check-beep" class="form-check-label">Audio beep</label>  
+        </div>
     </form>
 
     <hr>
