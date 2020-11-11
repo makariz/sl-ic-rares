@@ -53,7 +53,7 @@ var rares =
         bgColor: "#f6d6ff",
     },
     {
-        id: 1740657,
+        id: 174057,
         name: "Scourgelord Tyrannus",
         coords: "47,2, 66,1",
     },
