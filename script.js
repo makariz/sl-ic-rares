@@ -426,10 +426,14 @@ $(document).on("click", ".link-copy-coords", function(e)
 
     var $item = $(this).parent().parent();
 
-    var name = $item.find(".rare-name").attr("data-name");
-    var coords = $item.find(".coords span").text();
+    // /run C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(118,x/100,y/100))
 
-    var str = "/way " + coords + " " + name;
+    var coords = $item.find(".coords span").text().split(", ");
+    var x = coords[0].replace(",", ".");
+    var y = coords[1].replace(",", ".");
+    
+    var str = "/run C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(118," + x + "/100," + y + "/100))";
+
     navigator.clipboard.writeText(str);
 });
 

@@ -10,4 +10,4 @@ Open in browser [here](https://bloodleh.github.io/sl-ic-rares/).
 * Alternatively you can change the fields manually (like add 3-4 minutes to "Last killed at" so the timer tracks when the rare actually becomes active/killable).
 * Set the "Show amount" field to manually decrease/increase the list size. Default 20 is a full one rare rotation.
 * Check the "Play sound" -checkbox to enable an audio notification when a rare is spawning.
-* Click the copy icon next to the coords to copy "/way [coords] [rarename]" to the clipboard.
+* Click the copy icon next to the coords to copy a macro to clipboard. Paste it to in-game chat to add a map pin to the Icecrown map.
