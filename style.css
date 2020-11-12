@@ -61,6 +61,11 @@ label
     width: 60px;
 }
 
+#btn-sync-eu
+{
+    margin-right: 5px;
+}
+
 .link-copy-coords
 {
     float: right;
