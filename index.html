@@ -9,8 +9,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-    <link rel="stylesheet" href="style.css?v=8">
-    <script src="script.js?v=8"></script>
+    <link rel="stylesheet" href="style.css?v=9">
+    <script src="script.js?v=9"></script>
 
     <script>const whTooltips = {colorLinks: true, iconizeLinks: false, renameLinks: false};</script>
     <script src="https://wow.zamimg.com/widgets/power.js"></script>
@@ -39,6 +39,11 @@
         <button type="button" id="btn-sync-eu" class="button">Sync to EU</button>
         <button type="button" id="btn-sync-na" class="button">Sync to NA</button>
 
+        <div class="form-check form-check-inline">
+            <input id="check-show-class" type="checkbox" class="form-check-input">
+            <label for="check-show-class" class="form-check-label">Show assign class column</label>  
+        </div>
+
     </form>
 
     <hr>
@@ -50,6 +55,7 @@
             <th>Rare name</th>
             <th>Coords</th>
             <th>Drop</th>
+            <th class="class-header hide">Assign class</th>
         </tr>
     </table>
 </div>
@@ -64,6 +70,7 @@
     <li>Set the "Show amount" field to manually decrease/increase the list size. Default 20 is a full one rare rotation.</li>
     <li>Check the "Play sound" -checkbox to enable an audio notification when a rare is spawning.</li>
     <li>Click the copy icon next to the coords (<i class="fa fa-copy"></i>) to copy a macro to clipboard. Paste it to in-game chat to add a map pin to the Icecrown map.</li>
+    <li>Check the "Show assign class column" -checkbox to show dropdown list of each class for every rare to quickly track on which alt you want to kill the rare.</li>
 </ul>
 
 <template id="template-item" class="template">
@@ -73,6 +80,23 @@
         <td class="rare-name" data-name=""></td>
         <td class="coords"><span></span> <a href="#" class="link-copy-coords" title="Copy map pin macro to clipboard"><i class="fa fa-copy"></i></a></td>
         <td class="drop" data-name=""></td>
+        <td class="class hide">
+            <select class="select-class">
+                <option value="">None</option>
+                <option value="death-knight">Death Knight</option>
+                <option value="demon-hunter">Demon Hunter</option>
+                <option value="druid">Druid</option>
+                <option value="hunter">Hunter</option>
+                <option value="mage">Mage</option>
+                <option value="monk">Monk</option>
+                <option value="paladin">Paladin</option>
+                <option value="priest">Priest</option>
+                <option value="rogue">Rogue</option>
+                <option value="shaman">Shaman</option>
+                <option value="warlock">Warlock</option>
+                <option value="warrior">Warrior</option>
+            </select>
+        </td>
     </tr>
 </template>
 

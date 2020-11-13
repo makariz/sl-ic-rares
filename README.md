@@ -11,3 +11,4 @@ Open in browser [here](https://bloodleh.github.io/sl-ic-rares/).
 * Set the "Show amount" field to manually decrease/increase the list size. Default 20 is a full one rare rotation.
 * Check the "Play sound" -checkbox to enable an audio notification when a rare is spawning.
 * Click the copy icon next to the coords to copy a macro to clipboard. Paste it to in-game chat to add a map pin to the Icecrown map.
+* Check the "Show assign class column" -checkbox to show dropdown list of each class for every rare to quickly track on which alt you want to kill the rare.

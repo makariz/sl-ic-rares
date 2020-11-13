@@ -319,6 +319,53 @@ function detectRegion()
     }
 }
 
+function getClassColumnCache(addItem)
+{
+    var cache = localStorage.getItem("classCache");
+    if (cache)
+    {
+        cache = JSON.parse(cache);
+    }
+    else
+    {
+        cache = {};
+    }
+
+    if (addItem)
+    {
+        cache[addItem.id] = addItem.class;
+    }
+
+    return cache;
+}
+
+function showClassColumn(enabled)
+{
+    localStorage.setItem("showClassColumn", enabled ? "1" : "0");
+
+    if (enabled)
+    {
+        var cache = getClassColumnCache(null);
+
+        $(".item").each(function()
+        {
+            var rareId = parseInt($(this).attr("data-id"));
+            var className = cache[rareId] || null;
+
+            $(this).find(".select-class").attr("class", "select-class").val(className ? className : "");
+
+            if (className)
+            {
+                $(this).find(".select-class").addClass("bold bg-" + className);
+            }
+        });
+    }
+
+    var f = enabled ? "removeClass" : "addClass";
+    $("#table-rares .class-header")[f]("hide");
+    $("#table-rares .class")[f]("hide");
+}
+
 function setup()
 {
     var lastKilledRareId = parseInt($("#select-last-rare").val());
@@ -399,6 +446,8 @@ function setup()
         
         $("#table-rares").append($item);
     }
+
+    $("#check-show-class").prop("checked", localStorage.getItem("showClassColumn") === "1").trigger("change");
 
     try
     {
@@ -482,6 +531,29 @@ $(document).on("click", "#link-help", function(e)
     $("#help-section")[0].scrollIntoView();
 });
 
+$(document).on("change", "#check-show-class", function(e)
+{
+    var checked = $(this).prop("checked");
+    showClassColumn(checked);
+});
+
+$(document).on("change", ".select-class", function(e)
+{
+    var className = $(this).val();
+    var $item = $(this).parent().parent();
+    var rareId = parseInt($item.attr("data-id"));
+
+    $(this).attr("class", "select-class");
+
+    if (className)
+    {
+        $(this).addClass("bold bg-" + className);
+    }
+
+    var cache = getClassColumnCache({ id: rareId, class: className });
+    localStorage.setItem("classCache", JSON.stringify(cache));
+});
+
 $(document).ready(function()
 {
     // Populate last killed rare
@@ -499,8 +571,6 @@ $(document).ready(function()
 
     $("#input-last-at").val(now.format("HH:mm"));
     $("#check-beep").prop("checked", false);
-
-    
 
     setInterval(calculateTimeLeft, 1000);
 

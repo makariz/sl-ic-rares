@@ -81,3 +81,130 @@ label
 {
     cursor: pointer;
 }
+
+.bold
+{
+    font-weight: bold;
+}
+
+/* Class colors */
+.c-death-knight
+{
+    color: #c41f3b;
+}
+
+.c-demon-hunter
+{
+    color: #a330c9;
+}
+
+.c-druid
+{
+    color: #ff7d0a;
+}
+
+.c-hunter
+{
+    color: #abd473;
+}
+
+.c-mage
+{
+    color: #69ccf0;
+}
+
+.c-monk
+{
+    color: #00ff96;
+}
+
+.c-paladin
+{
+    color: #f58cba;
+}
+
+.c-priest
+{
+    color: #fff;
+}
+
+.c-rogue
+{
+    color: #fff569;
+}
+
+.c-shaman
+{
+    color: #0070de;
+}
+
+.c-warlock
+{
+    color: #9482c9;
+}
+
+.c-warrior
+{
+    color: #c79c6e;
+}
+
+/* Class bg colors */
+.bg-death-knight
+{
+    background-color: #c41f3b;
+}
+
+.bg-demon-hunter
+{
+    background-color: #a330c9;
+}
+
+.bg-druid
+{
+    background-color: #ff7d0a;
+}
+
+.bg-hunter
+{
+    background-color: #abd473;
+}
+
+.bg-mage
+{
+    background-color: #69ccf0;
+}
+
+.bg-monk
+{
+    background-color: #00ff96;
+}
+
+.bg-paladin
+{
+    background-color: #f58cba;
+}
+
+.bg-priest
+{
+    background-color: #fff;
+}
+
+.bg-rogue
+{
+    background-color: #fff569;
+}
+
+.bg-shaman
+{
+    background-color: #0070de;
+}
+
+.bg-warlock
+{
+    background-color: #9482c9;
+}
+
+.bg-warrior
+{
+    background-color: #c79c6e;
+}
