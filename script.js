@@ -134,8 +134,9 @@ var rares =
     },
 ];
 
-var syncEu = { id: 174065, dt: "2020-11-11T19:40:00Z" };
-var syncNa = { id: 174065, dt: "2020-11-11T14:20:00Z" };
+var syncEu = { id: 174059, dt: "2020-11-16T20:20:00Z" };
+var syncNa = { id: 174067, dt: "2020-11-16T20:20:00Z" };
+var spawnIntervalMinutes = 10;
 
 if (!String.prototype.padStart) {
     String.prototype.padStart = function padStart(targetLength, padString) {
@@ -238,7 +239,14 @@ function getTimeLeftString(ts)
 
         if (minutes > 0)
         {
-            str += minutes.toString().padStart(2, "0") + "m";
+            if (hours > 0)
+            {
+                str += minutes.toString().padStart(2, "0") + "m";
+            }
+            else
+            {
+                str += minutes + "m";
+            }
         }
 
         if (hours > 0 || minutes > 0)
@@ -399,7 +407,7 @@ function setup()
 
     for (var i = 0; i < nextRares.length; i++)
     {
-        dt.add(20, "minutes");
+        dt.add(spawnIntervalMinutes, "minutes");
 
         var nextRare = nextRares[i];
         var alreadySpawned = now.unix() >= dt.unix();
@@ -503,7 +511,7 @@ $(document).on("click", "#btn-sync-eu, #btn-sync-na", function(e)
     {
         throw new Error("Invalid button id: " + btnId);
     }
-    var dt = moment(data.dt).add(20, "minutes");
+    var dt = moment(data.dt).add(spawnIntervalMinutes, "minutes");
     var now = moment();
 
     var index = getRareIndex(data.id);
@@ -511,12 +519,12 @@ $(document).on("click", "#btn-sync-eu, #btn-sync-na", function(e)
 
     while (dt.unix() < now.unix())
     {
-        dt.add(20, "minutes");
+        dt.add(spawnIntervalMinutes, "minutes");
         index = getNextRareIndex(rare.id);
         rare = rares[index];
     }
 
-    dt.subtract(20, "minutes");
+    dt.subtract(spawnIntervalMinutes, "minutes");
 
     $("#select-last-rare").val(rare.id);
     $("#input-last-at").val(dt.format("HH:mm"));
