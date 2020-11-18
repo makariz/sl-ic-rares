@@ -154,13 +154,6 @@ if (!String.prototype.padStart) {
     };
 }
 
-var playBeep = (function beep() {
-    var snd = new Audio("data:audio/wav;base64,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qJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=");
-    return function () {
-        snd.play();
-    }
-})();
-
 function playSound(name)
 {
     var snd = new Audio(getSoundPath(name));
@@ -295,7 +288,7 @@ function calculateTimeLeft()
             var spawned = $(this).attr("data-spawned");
             if (spawned === "0")
             {
-                if ($("#check-beep").prop("checked"))
+                if ($(this).find(".check-sound").prop("checked"))
                 {
                     playSound(name);
                 }
@@ -347,6 +340,26 @@ function getClassColumnCache(addItem)
     return cache;
 }
 
+function getSoundColumnCache(addItem)
+{
+    var cache = localStorage.getItem("soundCache");
+    if (cache)
+    {
+        cache = JSON.parse(cache);
+    }
+    else
+    {
+        cache = {};
+    }
+
+    if (addItem)
+    {
+        cache[addItem.id] = addItem.enabled ? "1" : "0";
+    }
+
+    return cache;
+}
+
 function showClassColumn(enabled)
 {
     localStorage.setItem("showClassColumn", enabled ? "1" : "0");
@@ -372,6 +385,43 @@ function showClassColumn(enabled)
     var f = enabled ? "removeClass" : "addClass";
     $("#table-rares .class-header")[f]("hide");
     $("#table-rares .class")[f]("hide");
+}
+
+function showSoundColumn(enabled)
+{
+    localStorage.setItem("showSoundColumn", enabled ? "1" : "0");
+
+    if (enabled)
+    {
+        var cache = getSoundColumnCache(null);
+
+        $(".item").each(function()
+        {
+            var rareId = parseInt($(this).attr("data-id"));
+            var soundEnabled = cache[rareId] || null;
+
+            $(this).find(".check-sound").prop("checked", soundEnabled === "1");
+        });
+
+        var enabledCount = 0;
+        var totalCount = 0;
+    
+        $(".check-sound").each(function()
+        {
+            totalCount++;
+    
+            if ($(this).prop("checked"))
+            {
+                enabledCount++;
+            }
+        });
+    
+        $("#check-sound-all").prop("checked", enabledCount === totalCount);
+    }
+    
+    var f = enabled ? "removeClass" : "addClass";
+    $("#table-rares .sound-header")[f]("hide");
+    $("#table-rares .sound")[f]("hide");
 }
 
 function setup()
@@ -456,6 +506,7 @@ function setup()
     }
 
     $("#check-show-class").prop("checked", localStorage.getItem("showClassColumn") === "1").trigger("change");
+    $("#check-show-sound").prop("checked", localStorage.getItem("showSoundColumn") === "1").trigger("change");
 
     try
     {
@@ -545,6 +596,47 @@ $(document).on("change", "#check-show-class", function(e)
     showClassColumn(checked);
 });
 
+$(document).on("change", "#check-show-sound", function(e)
+{
+    var checked = $(this).prop("checked");
+    showSoundColumn(checked);
+});
+
+$(document).on("change", "#check-sound-all", function(e)
+{
+    var checked = $(this).prop("checked");
+    
+    $(".check-sound").each(function()
+    {
+        $(this).prop("checked", checked).trigger("change");
+    });
+});
+
+$(document).on("change", ".check-sound", function(e)
+{
+    var soundEnabled = $(this).prop("checked");
+    var $item = $(this).parent().parent();
+    var rareId = parseInt($item.attr("data-id"));
+
+    var cache = getSoundColumnCache({ id: rareId, enabled: soundEnabled });
+    localStorage.setItem("soundCache", JSON.stringify(cache));
+
+    var enabledCount = 0;
+    var totalCount = 0;
+
+    $(".check-sound").each(function()
+    {
+        totalCount++;
+
+        if ($(this).prop("checked"))
+        {
+            enabledCount++;
+        }
+    });
+
+    $("#check-sound-all").prop("checked", enabledCount === totalCount);
+});
+
 $(document).on("change", ".select-class", function(e)
 {
     var className = $(this).val();
@@ -578,7 +670,6 @@ $(document).ready(function()
     now.subtract(modMins, "minutes");
 
     $("#input-last-at").val(now.format("HH:mm"));
-    $("#check-beep").prop("checked", false);
 
     setInterval(calculateTimeLeft, 1000);
 
